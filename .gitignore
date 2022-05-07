@@ -24,7 +24,6 @@
 *.iml
 
 # Project gen files
-.idea
 .allure/
 .gradle/
 allure-results/
@@ -53,3 +52,4 @@ Training
 Blog
 About
 Loading complete
+/.idea/
