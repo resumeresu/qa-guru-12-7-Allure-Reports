@@ -1,6 +1,8 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -12,7 +14,8 @@ public class GitHubTest {
 
     @Test
     public void issueTest() {
-        
+
+        SelenideLogger.addListener("allure", new AllureSelenide());
 
         String searchText = "eroshenkoam/allure-example";
         String issueNumber = "76";
