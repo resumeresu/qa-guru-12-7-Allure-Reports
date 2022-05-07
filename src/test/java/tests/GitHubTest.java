@@ -1,9 +1,16 @@
 package tests;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Feature;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import steps.GitHubSteps;
+
+import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byId;
@@ -18,7 +25,19 @@ public class GitHubTest {
     static String issueNumber = "76";
     static String issueTitle = "С Новым Годом (2022)";
 
+    @AfterEach
+    public void addAttachments() {
+        Allure.getLifecycle().addAttachment(
+                "Page source",
+                "text/html",
+                "html",
+                WebDriverRunner.getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8)
+        );
+    }
+
     @Test
+    @Feature("Repository Issues")
+    @DisplayName("The issue has certain title. Selenide Listener.")
     public void issueTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
@@ -33,6 +52,8 @@ public class GitHubTest {
     }
 
     @Test
+    @Feature("Repository Issues")
+    @DisplayName("The issue has certain title. Lambda steps.")
     public void issueTestWithLambdas() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
@@ -49,6 +70,8 @@ public class GitHubTest {
     }
 
     @Test
+    @Feature("Repository Issues")
+    @DisplayName("The issue has certain title. Annotated steps.")
     public void issueTestWithAnnotatedSteps() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         GitHubSteps steps = new GitHubSteps();

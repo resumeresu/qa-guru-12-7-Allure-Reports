@@ -1,6 +1,11 @@
 package steps;
 
+import com.codeborne.selenide.Screenshots;
+import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byId;
